@@ -54,13 +54,27 @@ const propertySchema = new mongoose.Schema(
       default: 0,
     },
 
-    images: {
-      type: [String],
-      validate: {
-        validator: (images) => images.length <= 4,
-        message: "Maximum 4 images are allowed",
+   
+images: {
+  type: [
+    {
+      url: {
+        type: String,
+        required: true,
+      },
+      fileId: {
+        type: String,
+        required: true,
       },
     },
+  ],
+  validate: {
+    validator: (images) => images.length <= 4,
+    message: "Maximum 4 images are allowed",
+  },
+  default: [],
+},
+
 
     amenities: {
       type: [String],
