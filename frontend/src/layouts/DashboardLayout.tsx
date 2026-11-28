@@ -1,4 +1,3 @@
-
 import { NavLink, Outlet, Link, useNavigate } from "react-router";
 import {
   LayoutDashboard,
@@ -7,6 +6,7 @@ import {
   PlusCircle,
   LogOut,
   ArrowLeft,
+  CalendarDays,
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import toast from "react-hot-toast";
@@ -18,6 +18,16 @@ const DashboardLayout = () => {
   const links = [
     { name: "Overview", path: "/dashboard", icon: LayoutDashboard },
     { name: "My Listings", path: "/dashboard/listings", icon: House },
+    {
+      name: "My Appointments",
+      path: "/dashboard/appointments",
+      icon: CalendarDays,
+    },
+    {
+      name: "Received Appointments",
+      path: "/dashboard/received-appointments",
+      icon: CalendarDays,
+    },
     { name: "Add Property", path: "/dashboard/create", icon: PlusCircle },
     { name: "My Profile", path: "/dashboard/profile", icon: UserRound },
   ];
@@ -34,12 +44,9 @@ const DashboardLayout = () => {
 
   return (
     <div className="min-h-screen bg-[#F7F7F5]">
-
       <div className="flex min-h-screen">
-
         {/* SIDEBAR */}
         <aside className="hidden w-64 shrink-0 border-r border-gray-100 bg-white p-6 md:flex md:flex-col">
-
           <Link to="/" className="mb-10">
             <img
               src="/dreamdwell-logo.png"
@@ -77,19 +84,14 @@ const DashboardLayout = () => {
           </nav>
 
           <div className="mt-auto border-t border-gray-100 pt-5">
-
             <div className="mb-5 flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E9F5ED] font-semibold text-[#39865A]">
                 {user?.name?.charAt(0).toUpperCase()}
               </div>
 
               <div className="min-w-0">
-                <p className="truncate text-sm font-semibold">
-                  {user?.name}
-                </p>
-                <p className="truncate text-xs text-gray-400">
-                  {user?.email}
-                </p>
+                <p className="truncate text-sm font-semibold">{user?.name}</p>
+                <p className="truncate text-xs text-gray-400">{user?.email}</p>
               </div>
             </div>
 
@@ -108,16 +110,13 @@ const DashboardLayout = () => {
               <ArrowLeft size={18} />
               Back to website
             </Link>
-
           </div>
         </aside>
 
         {/* DASHBOARD CONTENT */}
         <main className="min-w-0 flex-1">
           <div className="border-b border-gray-100 bg-white px-5 py-5 md:px-9">
-            <h1 className="text-lg font-semibold">
-              DreamDwell Dashboard
-            </h1>
+            <h1 className="text-lg font-semibold">DreamDwell Dashboard</h1>
             <p className="mt-1 text-xs text-gray-500">
               Manage your properties and account.
             </p>
@@ -127,7 +126,6 @@ const DashboardLayout = () => {
             <Outlet />
           </div>
         </main>
-
       </div>
     </div>
   );

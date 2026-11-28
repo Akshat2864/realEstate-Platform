@@ -58,3 +58,14 @@ export const getCurrentUser = async (): Promise<User> => {
     throw error;
   }
 };
+
+
+export const updateProfile = async (name: string) => {
+  try {
+    const response = await api.put("/users/profile", { name });
+    return response.data.user;
+  } catch (error) {
+    console.error("Update profile error:", error);
+    throw error;
+  }
+};

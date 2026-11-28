@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Routes, Route } from "react-router";
 import { Toaster } from "react-hot-toast";
 
@@ -19,6 +18,8 @@ import MyListings from "./pages/MyListings";
 import Profile from "./pages/Profile";
 import CreateProperty from "./pages/CreateProperty";
 import EditProperty from "./pages/EditProperty";
+import MyAppointments from "./pages/MyAppointments";
+import ReceivedAppointments from "./pages/ReceivedAppointments";
 
 function App() {
   return (
@@ -27,7 +28,6 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-
           {/* Public routes */}
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
@@ -45,9 +45,13 @@ function App() {
               <Route path="profile" element={<Profile />} />
               <Route path="create" element={<CreateProperty />} />
               <Route path="edit/:id" element={<EditProperty />} />
+              <Route path="appointments" element={<MyAppointments />} />
+              <Route
+                path="received-appointments"
+                element={<ReceivedAppointments />}
+              />
             </Route>
           </Route>
-
         </Routes>
       </BrowserRouter>
     </>
