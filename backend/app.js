@@ -6,6 +6,7 @@ import helmet from "helmet";
 import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import propertyRoutes from "./routes/property.routes.js";
+import appointmentRoutes from "./routes/appointment.routes.js";
 
 const app = express();
 
@@ -27,6 +28,9 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 
 app.use("/api/properties", propertyRoutes);
+
+app.use("/api/appointments", appointmentRoutes);
+
 
 
 app.get("/", (req, res) => {

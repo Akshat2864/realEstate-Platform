@@ -12,49 +12,43 @@ const appointmentSchema = new mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      default: null,
+      required: true,
     },
 
-    guestName: {
-      type: String,
-      trim: true,
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
 
-    guestEmail: {
-      type: String,
-      lowercase: true,
-      trim: true,
+    startAt: {
+      type: Date,
+      required: true,
     },
 
-    guestPhone: {
-      type: String,
-      trim: true,
-    },
-
-    viewingDate: {
+    endAt: {
       type: Date,
       required: true,
     },
 
     message: {
       type: String,
+      trim: true,
+      maxlength: 500,
       default: "",
     },
 
     status: {
       type: String,
-      enum: ["pending", "confirmed", "cancelled"],
-      default: "pending",
+      enum: ["confirmed", "cancelled", "completed"],
+      default: "confirmed",
     },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
-const Appointment = mongoose.model(
-  "Appointment",
-  appointmentSchema
-);
+appointmentSchema.index({ owner: 1, status: 1, startAt: 1, endAt: 1 });
+
+const Appointment = mongoose.model("Appointment", appointmentSchema);
 
 export default Appointment;
