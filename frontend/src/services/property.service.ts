@@ -44,3 +44,39 @@ export const getMyProperties = async (): Promise<Property[]> => {
     throw error;
   }
 };
+
+
+
+export const createProperty = async (formData: FormData): Promise<void> => {
+  try {
+    await api.post("/properties", formData);
+  } catch (error) {
+    console.error("Create property error:", error);
+    throw error;
+  }
+};
+
+
+
+export const updateProperty = async (
+  id: string,
+  formData: FormData
+): Promise<Property> => {
+  try {
+    const response = await api.put(`/properties/${id}`, formData);
+    return response.data.property;
+  } catch (error) {
+    console.error("Update property error:", error);
+    throw error;
+  }
+};
+
+
+export const deleteProperty = async (id: string): Promise<void> => {
+  try {
+    await api.delete(`/properties/${id}`);
+  } catch (error) {
+    console.error("Delete property error:", error);
+    throw error;
+  }
+};
